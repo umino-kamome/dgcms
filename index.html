@@ -404,6 +404,243 @@ header p{font-size:17px}
   height:21px;
 }
 
+
+/* v2.8 interactive part chips and detail sheet */
+.part-chip{
+  appearance:none;
+  border:1px solid #39513d;
+  background:linear-gradient(180deg,rgba(20,35,24,.96),rgba(12,23,16,.96));
+  color:#eef4ed;
+  border-radius:10px;
+  padding:7px 10px;
+  margin:3px 4px 3px 0;
+  font:inherit;
+  font-size:13px;
+  font-weight:800;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.015);
+}
+.part-chip:active{
+  transform:translateY(1px);
+  border-color:var(--accent);
+  background:rgba(153,207,85,.12);
+}
+.part-chip .ui-icon{
+  width:13px;
+  height:13px;
+  margin-right:5px;
+  color:var(--accent);
+}
+.part-list{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  margin-top:4px;
+}
+.detail-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:90;
+  background:rgba(0,0,0,.62);
+  backdrop-filter:blur(5px);
+  -webkit-backdrop-filter:blur(5px);
+  display:none;
+}
+.detail-backdrop.open{display:block}
+.detail-sheet{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  max-height:min(82vh,760px);
+  overflow:auto;
+  border:1px solid var(--line);
+  border-bottom:none;
+  border-radius:26px 26px 0 0;
+  background:
+    radial-gradient(circle at 80% 0,rgba(153,207,85,.07),transparent 34%),
+    linear-gradient(180deg,#111d14,#09120d);
+  box-shadow:0 -20px 50px rgba(0,0,0,.45);
+  padding:10px 16px calc(24px + env(safe-area-inset-bottom));
+}
+.detail-handle{
+  width:54px;height:5px;
+  border-radius:999px;
+  background:#4b5f50;
+  margin:2px auto 14px;
+}
+.detail-head{
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  justify-content:space-between;
+}
+.detail-title{
+  font-size:24px;
+  font-weight:900;
+  line-height:1.2;
+}
+.detail-close{
+  width:40px;height:40px;
+  border-radius:50%;
+  border:1px solid #3c5140;
+  background:#142018;
+  color:#f0f4ef;
+  display:grid;
+  place-items:center;
+  flex:0 0 40px;
+}
+.detail-close .ui-icon{width:19px;height:19px}
+.detail-section{
+  margin-top:14px;
+  border:1px solid var(--line-soft);
+  border-radius:16px;
+  padding:14px;
+  background:rgba(5,12,8,.48);
+}
+.detail-section-title{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:850;
+  color:#edf2ec;
+  margin-bottom:9px;
+}
+.detail-section-title .ui-icon{
+  width:18px;height:18px;color:var(--accent);
+}
+.detail-row{
+  display:grid;
+  grid-template-columns:105px 1fr;
+  gap:10px;
+  padding:8px 0;
+  border-top:1px solid rgba(55,76,60,.38);
+  font-size:13px;
+}
+.detail-row:first-of-type{border-top:none}
+.detail-key{color:var(--muted)}
+.detail-value{font-weight:700;overflow-wrap:anywhere}
+.evidence-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  margin:3px 5px 3px 0;
+  border:1px solid #3b5640;
+  border-radius:999px;
+  padding:5px 9px;
+  font-size:12px;
+  color:#dfe8df;
+  background:rgba(153,207,85,.07);
+}
+.empty-detail{
+  color:var(--muted);
+  line-height:1.6;
+}
+@media(min-width:720px){
+  .detail-sheet{
+    left:50%;
+    right:auto;
+    width:min(620px,calc(100% - 32px));
+    transform:translateX(-50%);
+  }
+}
+
+
+/* v2.9 collection dashboard and filters */
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+.dashboard-metric{
+  border:1px solid var(--line-soft);
+  border-radius:16px;
+  padding:14px;
+  background:
+    linear-gradient(180deg,rgba(17,30,20,.92),rgba(8,17,11,.92));
+}
+.dashboard-label{
+  color:var(--muted);
+  font-size:12px;
+  margin-bottom:5px;
+}
+.dashboard-value{
+  font-size:24px;
+  font-weight:900;
+  line-height:1;
+}
+.dashboard-sub{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:7px;
+}
+.progress-track{
+  height:8px;
+  border-radius:999px;
+  overflow:hidden;
+  background:#111d14;
+  border:1px solid #2f4434;
+  margin-top:9px;
+}
+.progress-fill{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#7fba43,#a8dc67);
+}
+.status-filter-row{
+  display:flex;
+  gap:8px;
+  overflow:auto;
+  padding:2px 0 10px;
+  scrollbar-width:none;
+}
+.status-filter-row::-webkit-scrollbar{display:none}
+.status-filter{
+  white-space:nowrap;
+  border:1px solid #384e3c;
+  background:#111c14;
+  color:#cbd4cc;
+  border-radius:999px;
+  padding:8px 12px;
+  font-size:12px;
+}
+.status-filter.active{
+  border-color:var(--accent);
+  background:rgba(153,207,85,.13);
+  color:#eff7e9;
+  box-shadow:0 0 0 2px rgba(153,207,85,.06);
+}
+.collection-state{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:10px;
+}
+.state-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid #334a38;
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:11px;
+  color:#c7d1c8;
+  background:#101b13;
+}
+.state-pill.done{
+  color:#e9f4df;
+  border-color:#5b7c4d;
+  background:rgba(125,186,67,.12);
+}
+.state-pill .ui-icon{
+  width:13px;
+  height:13px;
+}
+@media(min-width:720px){
+  .dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
 </style>
 </head>
 <body>
@@ -467,11 +704,19 @@ header p{font-size:17px}
 </div>
 <input class="file-input" id="importFile" type="file" accept="application/json,.json">
 
+
+<div id="partDetailBackdrop" class="detail-backdrop" aria-hidden="true">
+  <div class="detail-sheet" role="dialog" aria-modal="true" aria-labelledby="partDetailTitle">
+    <div class="detail-handle"></div>
+    <div id="partDetailContent"></div>
+  </div>
+</div>
+
 <script>
 
 const EMBEDDED_DATA = {"meta": {"system_name": "Death Guard Collection Management System", "system_abbreviation": "DGCMS", "database_name": "Death Guard Master Database", "database_abbreviation": "DGMD", "version": "0.2", "created_at": "2026-08-03T17:57:54", "scope": "Warhammer 40,000 Death Guard", "naming_rule": "Games Workshop Japan official Japanese name + English in parentheses"}, "product": {"id": "DG-PROD-PM-2017", "official_jp": "プレーグマリーン", "official_en": "Plague Marines", "product_type": "通常マルチパーツキット", "release_year": 2017, "current_status": "現行", "official_jp_verified": 1, "notes": "組立説明書の手順1～21を解析。公式主要構成22、最低必要箱数5。"}, "summary": {"total_builds": 22, "owned_builds": 0, "assembled_builds": 0, "painted_builds": 0, "shortage_builds": 22}, "builds": [{"build_id": "DG-BLD-PM-001", "sculpt_id": "DG-S-PM-001", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-01", "variant_name": "PM-01 / Step 2", "instruction_steps": "2", "weapon_jp": "片手火器＋鎖付き装具", "weapon_en": "One-handed firearm + chained implement", "weapon_type": "射撃＋装具", "weapon_configuration_jp": "片手火器＋鎖付き装具", "weapon_configuration_en": "One-handed firearm + chained implement", "assembly_notes": "左右別腕。鎖状の細部に注意。", "identification_notes": "片手火器と垂れ下がる鎖状装具。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 55, "weathering_affinity": 75, "glow_affinity": 25, "beginner_score": 60, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-002", "sculpt_id": "DG-S-PM-002", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-01", "variant_name": "PM-01 / Step 3", "instruction_steps": "3", "weapon_jp": "ピストル＋プレーグナイフ", "weapon_en": "Pistol + plague knife", "weapon_type": "射撃＋近接", "weapon_configuration_jp": "ピストル＋プレーグナイフ", "weapon_configuration_en": "Pistol + plague knife", "assembly_notes": "左右別腕。比較的単純。", "identification_notes": "片手火器と長いナイフ。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 30, "painting_difficulty": 45, "weathering_affinity": 70, "glow_affinity": 20, "beginner_score": 72, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-003", "sculpt_id": "DG-S-PM-003", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-02", "variant_name": "PM-02 / Step 5", "instruction_steps": "5", "weapon_jp": "メイス・オヴ・コンテイジョン＋近接武器", "weapon_en": "Mace of contagion + melee weapon", "weapon_type": "近接", "weapon_configuration_jp": "メイス・オヴ・コンテイジョン＋近接武器", "weapon_configuration_en": "Mace of contagion + melee weapon", "assembly_notes": "大型近接武器2本。干渉確認が必要。", "identification_notes": "左右に異なる大型近接武器。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 50, "painting_difficulty": 60, "weathering_affinity": 85, "glow_affinity": 15, "beginner_score": 55, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-004", "sculpt_id": "DG-S-PM-004", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-02", "variant_name": "PM-02 / Step 6", "instruction_steps": "6", "weapon_jp": "ボルトガン", "weapon_en": "Boltgun", "weapon_type": "射撃", "weapon_configuration_jp": "ボルトガン", "weapon_configuration_en": "Boltgun", "assembly_notes": "両手保持。接着前の仮組み推奨。", "identification_notes": "胸前でボルトガンを両手保持。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 55, "weathering_affinity": 75, "glow_affinity": 15, "beginner_score": 60, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-005", "sculpt_id": "DG-S-PM-005", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-03", "variant_name": "PM-03 / Step 8", "instruction_steps": "8", "weapon_jp": "フレイル・オヴ・コラプション", "weapon_en": "Flail of corruption", "weapon_type": "近接", "weapon_configuration_jp": "フレイル・オヴ・コラプション", "weapon_configuration_en": "Flail of corruption", "assembly_notes": "両手武器＋鎖。細い部品の破損に注意。", "identification_notes": "横長のフレイルと垂れ下がる鎖。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 70, "painting_difficulty": 70, "weathering_affinity": 90, "glow_affinity": 20, "beginner_score": 40, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-006", "sculpt_id": "DG-S-PM-006", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-03", "variant_name": "PM-03 / Step 9", "instruction_steps": "9", "weapon_jp": "ボルトガン＋プレーグナイフ", "weapon_en": "Boltgun + plague knife", "weapon_type": "射撃＋近接", "weapon_configuration_jp": "ボルトガン＋プレーグナイフ", "weapon_configuration_en": "Boltgun + plague knife", "assembly_notes": "左右別腕。単純な構成。", "identification_notes": "ボルトガンとナイフを左右に保持。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 30, "painting_difficulty": 45, "weathering_affinity": 70, "glow_affinity": 15, "beginner_score": 72, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-007", "sculpt_id": "DG-S-PM-007", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-04", "variant_name": "PM-04 / Step 11", "instruction_steps": "11", "weapon_jp": "ブライトランチャー", "weapon_en": "Blight launcher", "weapon_type": "射撃", "weapon_configuration_jp": "ブライトランチャー", "weapon_configuration_en": "Blight launcher", "assembly_notes": "武器が複数パーツ。胸前の位置合わせあり。", "identification_notes": "大型の筒状ランチャー。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 60, "painting_difficulty": 65, "weathering_affinity": 85, "glow_affinity": 45, "beginner_score": 48, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-008", "sculpt_id": "DG-S-PM-008", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-04", "variant_name": "PM-04 / Step 12A", "instruction_steps": "12A", "weapon_jp": "バブティック・アックス", "weapon_en": "Bubotic axe", "weapon_type": "近接", "weapon_configuration_jp": "バブティック・アックス", "weapon_configuration_en": "Bubotic axe", "assembly_notes": "片手武器中心で比較的容易。", "identification_notes": "片手の斧。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 30, "painting_difficulty": 45, "weathering_affinity": 80, "glow_affinity": 10, "beginner_score": 72, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-009", "sculpt_id": "DG-S-PM-009", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-04", "variant_name": "PM-04 / Step 12B", "instruction_steps": "12B", "weapon_jp": "ボルトガン", "weapon_en": "Boltgun", "weapon_type": "射撃", "weapon_configuration_jp": "ボルトガン", "weapon_configuration_en": "Boltgun", "assembly_notes": "両手保持。仮組み推奨。", "identification_notes": "胸前でボルトガンを保持。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 55, "weathering_affinity": 75, "glow_affinity": 15, "beginner_score": 60, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-010", "sculpt_id": "DG-S-PM-010", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-05", "variant_name": "PM-05 / Step 14A", "instruction_steps": "14A", "weapon_jp": "プラズマガン", "weapon_en": "Plasma gun", "weapon_type": "射撃", "weapon_configuration_jp": "プラズマガン", "weapon_configuration_en": "Plasma gun", "assembly_notes": "両手保持。銃口パーツの向きに注意。", "identification_notes": "長銃身とプラズマコイル。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 50, "painting_difficulty": 60, "weathering_affinity": 75, "glow_affinity": 90, "beginner_score": 55, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-011", "sculpt_id": "DG-S-PM-011", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-05", "variant_name": "PM-05 / Step 14B", "instruction_steps": "14B", "weapon_jp": "プレーグベルチャー", "weapon_en": "Plague belcher", "weapon_type": "射撃", "weapon_configuration_jp": "プレーグベルチャー", "weapon_configuration_en": "Plague belcher", "assembly_notes": "共通腕＋専用銃口。", "identification_notes": "噴射口を持つ短い特殊銃。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 60, "weathering_affinity": 80, "glow_affinity": 70, "beginner_score": 58, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-012", "sculpt_id": "DG-S-PM-012", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-05", "variant_name": "PM-05 / Step 14C", "instruction_steps": "14C", "weapon_jp": "ボルトガン", "weapon_en": "Boltgun", "weapon_type": "射撃", "weapon_configuration_jp": "ボルトガン", "weapon_configuration_en": "Boltgun", "assembly_notes": "共通腕＋ボルトガン部品。", "identification_notes": "標準的なボルトガン。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 40, "painting_difficulty": 50, "weathering_affinity": 70, "glow_affinity": 15, "beginner_score": 65, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-013", "sculpt_id": "DG-S-PM-013", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-05", "variant_name": "PM-05 / Step 14D", "instruction_steps": "14D", "weapon_jp": "メルタガン", "weapon_en": "Meltagun", "weapon_type": "射撃", "weapon_configuration_jp": "メルタガン", "weapon_configuration_en": "Meltagun", "assembly_notes": "共通腕＋専用銃口。", "identification_notes": "太い短銃身のメルタガン。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 55, "weathering_affinity": 75, "glow_affinity": 50, "beginner_score": 60, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-014", "sculpt_id": "DG-S-PM-014", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-05", "variant_name": "PM-05 / Step 15", "instruction_steps": "15", "weapon_jp": "プレーグナイフ構成", "weapon_en": "Plague knife configuration", "weapon_type": "近接", "weapon_configuration_jp": "プレーグナイフ構成", "weapon_configuration_en": "Plague knife configuration", "assembly_notes": "左右別腕。単純。", "identification_notes": "前方へナイフを構える近接型。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 30, "painting_difficulty": 45, "weathering_affinity": 75, "glow_affinity": 15, "beginner_score": 72, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-015", "sculpt_id": "DG-S-PM-015", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-06", "variant_name": "PM-06 / Step 17", "instruction_steps": "17", "weapon_jp": "プレーグスピューワー", "weapon_en": "Plague spewer", "weapon_type": "射撃", "weapon_configuration_jp": "プレーグスピューワー", "weapon_configuration_en": "Plague spewer", "assembly_notes": "武器・ホース・背部タンクの複数点接続。", "identification_notes": "大型噴射器と背部タンク、ホース。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 85, "painting_difficulty": 80, "weathering_affinity": 95, "glow_affinity": 85, "beginner_score": 28, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-016", "sculpt_id": "DG-S-PM-016", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-06", "variant_name": "PM-06 / Step 18A", "instruction_steps": "18A", "weapon_jp": "グレート・プレーグクリーヴァー", "weapon_en": "Great plague cleaver", "weapon_type": "近接", "weapon_configuration_jp": "グレート・プレーグクリーヴァー", "weapon_configuration_en": "Great plague cleaver", "assembly_notes": "大型両手武器。左右腕の位置合わせがシビア。", "identification_notes": "横長の巨大な両手斧。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 80, "painting_difficulty": 75, "weathering_affinity": 95, "glow_affinity": 20, "beginner_score": 32, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-017", "sculpt_id": "DG-S-PM-017", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-06", "variant_name": "PM-06 / Step 18B", "instruction_steps": "18B", "weapon_jp": "ボルトガン", "weapon_en": "Boltgun", "weapon_type": "射撃", "weapon_configuration_jp": "ボルトガン", "weapon_configuration_en": "Boltgun", "assembly_notes": "両手保持。比較的標準。", "identification_notes": "胸前のボルトガン。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 55, "weathering_affinity": 75, "glow_affinity": 15, "beginner_score": 60, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-018", "sculpt_id": "DG-S-PM-018", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-07", "variant_name": "PM-07 / Step 20A", "instruction_steps": "20A", "weapon_jp": "ボルトピストル＋パワーフィスト", "weapon_en": "Bolt pistol + power fist", "weapon_type": "チャンピオン", "weapon_configuration_jp": "ボルトピストル＋パワーフィスト", "weapon_configuration_en": "Bolt pistol + power fist", "assembly_notes": "左右独立腕。マント・背面装飾が多い。", "identification_notes": "大型拳とピストルを持つチャンピオン。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 75, "weathering_affinity": 90, "glow_affinity": 20, "beginner_score": 50, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-019", "sculpt_id": "DG-S-PM-019", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-07", "variant_name": "PM-07 / Step 20B", "instruction_steps": "20B", "weapon_jp": "ボルトピストル＋プレーグソード", "weapon_en": "Bolt pistol + plaguesword", "weapon_type": "チャンピオン", "weapon_configuration_jp": "ボルトピストル＋プレーグソード", "weapon_configuration_en": "Bolt pistol + plaguesword", "assembly_notes": "左右独立腕。細い剣先に注意。", "identification_notes": "ピストルと剣を持つチャンピオン。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 40, "painting_difficulty": 70, "weathering_affinity": 85, "glow_affinity": 20, "beginner_score": 55, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-020", "sculpt_id": "DG-S-PM-020", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-07", "variant_name": "PM-07 / Step 20C", "instruction_steps": "20C", "weapon_jp": "プラズマピストル＋パワーフィスト", "weapon_en": "Plasma pistol + power fist", "weapon_type": "チャンピオン", "weapon_configuration_jp": "プラズマピストル＋パワーフィスト", "weapon_configuration_en": "Plasma pistol + power fist", "assembly_notes": "左右独立腕。マント・背面装飾が多い。", "identification_notes": "大型拳とプラズマピストル。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 45, "painting_difficulty": 75, "weathering_affinity": 90, "glow_affinity": 80, "beginner_score": 50, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-021", "sculpt_id": "DG-S-PM-021", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-07", "variant_name": "PM-07 / Step 20D", "instruction_steps": "20D", "weapon_jp": "プラズマピストル＋プレーグソード", "weapon_en": "Plasma pistol + plaguesword", "weapon_type": "チャンピオン", "weapon_configuration_jp": "プラズマピストル＋プレーグソード", "weapon_configuration_en": "Plasma pistol + plaguesword", "assembly_notes": "左右独立腕。細い剣先に注意。", "identification_notes": "プラズマピストルと剣。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 40, "painting_difficulty": 70, "weathering_affinity": 85, "glow_affinity": 80, "beginner_score": 55, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}, {"build_id": "DG-BLD-PM-022", "sculpt_id": "DG-S-PM-022", "official_jp": "プレーグマリーン", "official_en": "Plague Marine", "sculpt_code": "PM-07", "variant_name": "PM-07 / Step 21", "instruction_steps": "21", "weapon_jp": "ボルトガン＋絶望の旗印", "weapon_en": "Boltgun + Icon of Despair", "weapon_type": "射撃＋旗印", "weapon_configuration_jp": "ボルトガン＋絶望の旗印", "weapon_configuration_en": "Boltgun + Icon of Despair", "assembly_notes": "両手銃と背面旗印。細い突起に注意。", "identification_notes": "ボルトガンと大きな背面旗印。", "game_status": "未評価（現行ルール確認待ち）", "assembly_difficulty": 65, "painting_difficulty": 80, "weathering_affinity": 90, "glow_affinity": 25, "beginner_score": 38, "model_evaluation_status": "暫定採点済み", "owned": 0, "quantity": 0, "assembled": 0, "painted": 0, "target_quantity": 1, "collection_notes": "通常キット所持は確定しているが、この個別構成の完成有無は未確認。"}], "rubrics": [{"category": "assembly", "criterion_code": "A01", "criterion_jp": "両手武器または左右腕の同時位置合わせ", "max_points": 20, "direction": "高いほど難しい", "source_rule": "説明書の接合構造"}, {"category": "assembly", "criterion_code": "A02", "criterion_jp": "小さな接着面・保持点", "max_points": 20, "direction": "高いほど難しい", "source_rule": "説明書の接着面"}, {"category": "assembly", "criterion_code": "A03", "criterion_jp": "細長い・破損しやすい部品", "max_points": 20, "direction": "高いほど難しい", "source_rule": "完成図と部品形状"}, {"category": "assembly", "criterion_code": "A04", "criterion_jp": "サブアセンブリ推奨度", "max_points": 20, "direction": "高いほど難しい", "source_rule": "塗装アクセスと組立順"}, {"category": "assembly", "criterion_code": "A05", "criterion_jp": "部品点数・位置合わせ工程", "max_points": 20, "direction": "高いほど難しい", "source_rule": "説明書工程数"}, {"category": "nurgle", "criterion_code": "N01", "criterion_jp": "錆表現適性", "max_points": 20, "direction": "高いほど適性が高い", "source_rule": "金属面と境界"}, {"category": "nurgle", "criterion_code": "N02", "criterion_jp": "腐食表現適性", "max_points": 20, "direction": "高いほど適性が高い", "source_rule": "装甲面と損傷"}, {"category": "nurgle", "criterion_code": "N03", "criterion_jp": "苔表現適性", "max_points": 20, "direction": "高いほど適性が高い", "source_rule": "水平面・隙間"}, {"category": "nurgle", "criterion_code": "N04", "criterion_jp": "膿・粘液表現適性", "max_points": 20, "direction": "高いほど適性が高い", "source_rule": "有機部・排出口"}, {"category": "nurgle", "criterion_code": "N05", "criterion_jp": "発光表現適性", "max_points": 20, "direction": "高いほど適性が高い", "source_rule": "レンズ・銃口・液体・エネルギー部"}, {"category": "painting", "criterion_code": "P01", "criterion_jp": "塗り分け領域数", "max_points": 20, "direction": "高いほど難しい", "source_rule": "完成図の素材区分"}, {"category": "painting", "criterion_code": "P02", "criterion_jp": "奥まった箇所", "max_points": 20, "direction": "高いほど難しい", "source_rule": "腕・武器・胴体の重なり"}, {"category": "painting", "criterion_code": "P03", "criterion_jp": "金属ディテール密度", "max_points": 20, "direction": "高いほど難しい", "source_rule": "武器・装甲意匠"}, {"category": "painting", "criterion_code": "P04", "criterion_jp": "有機物・腐敗表現", "max_points": 20, "direction": "高いほど難しい", "source_rule": "露出肉・チューブ・変異"}, {"category": "painting", "criterion_code": "P05", "criterion_jp": "細部密度", "max_points": 20, "direction": "高いほど難しい", "source_rule": "装飾・ケーブル・傷"}], "data_status": {"stable": ["組立説明書由来の完成構成", "模型評価", "コレクション項目"], "pending": ["公式Codexまたは公式アプリに基づくプレーグマリーン武器プロフィール", "武器別ゲーム評価", "市場価格", "購入候補"]}, "current_rules": {"edition": "Warhammer 40,000 11th Edition", "faction_pack": "Death Guard Faction Pack v1.0", "legal_from": "2026-06-20", "mfm_updated": "2026-07-22", "checked_at": "2026-08-04", "detachments": [{"id": "DG-DET-CE", "name_official_en": "Contagion Engines", "name_official_jp": null, "japanese_description": "デーモンエンジンや車両を中心とするデタッチメント", "force_disposition": "Purge the Foe", "detachment_points": 1, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 1}, {"id": "DG-DET-FH", "name_official_en": "Flyblown Host", "name_official_jp": null, "japanese_description": "プレーグマリーンの前進配置と近距離射撃を支援するデタッチメント", "force_disposition": "Reconnaissance", "detachment_points": 1, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 1}, {"id": "DG-DET-POP", "name_official_en": "Paragons of Putrescence", "name_official_jp": null, "japanese_description": "デスガードのキャラクターを強化するデタッチメント", "force_disposition": "Priority Assets", "detachment_points": 1, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 1}, {"id": "DG-DET-COC", "name_official_en": "Champions of Contagion", "name_official_jp": null, "japanese_description": "複数の疫病効果を使い分けるデタッチメント", "force_disposition": "Take and Hold", "detachment_points": 2, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 0}, {"id": "DG-DET-DLC", "name_official_en": "Death Lord's Chosen", "name_official_jp": null, "japanese_description": "精鋭戦力を中心とするデタッチメント", "force_disposition": "Priority Assets", "detachment_points": 2, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 0}, {"id": "DG-DET-MH", "name_official_en": "Mortarion's Hammer", "name_official_jp": null, "japanese_description": "火力と正面攻撃を重視するデタッチメント", "force_disposition": "Purge the Foe", "detachment_points": 2, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 0}, {"id": "DG-DET-SV", "name_official_en": "Shamblerot Vectorium", "name_official_jp": null, "japanese_description": "ポクスウォーカーなどの消耗戦力を活用するデタッチメント", "force_disposition": "Disruption", "detachment_points": 2, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 0}, {"id": "DG-DET-TS", "name_official_en": "Tallyband Summoners", "name_official_jp": null, "japanese_description": "プレーグ・レギオンや召喚戦力を支援するデタッチメント", "force_disposition": "Disruption", "detachment_points": 2, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 0}, {"id": "DG-DET-VV", "name_official_en": "Virulent Vectorium", "name_official_jp": null, "japanese_description": "目標確保を重視するデタッチメント", "force_disposition": "Take and Hold", "detachment_points": 3, "source_document_id": "RULE-DG-FP-2026-01", "is_new_2026": 0}], "interactions": [{"id": "DG-RULE-FH-01", "subject": "Plague Marines", "detachment_id": "DG-DET-FH", "rule_name_official_en": "Verminous Haze", "japanese_summary": "戦闘陣形決定時、最大2個のプレーグマリーン・ユニットにInfiltratorsを付与する。", "gameplay_scope": "配置・機動", "source_document_id": "RULE-DG-FOCUS-2026", "page_or_section": "Flyblown Host", "evaluation_effect": "プレーグマリーンの接敵速度を高める。武器別評価には直結させず、ユニット運用評価に反映する。"}, {"id": "DG-RULE-FH-02", "subject": "Plague Marines", "detachment_id": "DG-DET-FH", "rule_name_official_en": "Insectile Murmuration", "japanese_summary": "対象が味方の感染範囲内にいる場合、そのプレーグマリーン・ユニットはウーンズロール1をリロールする。", "gameplay_scope": "攻撃効率", "source_document_id": "RULE-DG-FOCUS-2026", "page_or_section": "Flyblown Host Enhancement", "evaluation_effect": "射撃・近接の両方を支援し得るが、装備ごとの優劣を単独で確定する根拠にはしない。"}, {"id": "DG-RULE-FH-03", "subject": "Plague Marines", "detachment_id": "DG-DET-FH", "rule_name_official_en": "Eye of the Swarm", "japanese_summary": "射撃フェイズにプレーグマリーン・ユニットの射撃武器へ[Close-Quarters]を付与する。", "gameplay_scope": "近距離射撃", "source_document_id": "RULE-DG-FOCUS-2026", "page_or_section": "Flyblown Host Stratagem", "evaluation_effect": "射撃型プレーグマリーンの接近戦中の運用を補助する。"}], "verification": [{"domain": "市場価格", "status": "未登録", "checked_at": "2026-08-04", "basis": "時点依存情報", "next_action": "市場観測時に出典と日付を付けて登録"}, {"domain": "模型評価", "status": "基準登録済み", "checked_at": "2026-08-04", "basis": "チェックリスト方式", "next_action": "実物塗装後のユーザー評価を将来追加"}, {"domain": "武器別ゲーム評価", "status": "保留", "checked_at": "2026-08-04", "basis": "公開Faction PackにPlague Marinesの完全データシートがない", "next_action": "公式Codexまたは公式アプリのデータシート確認"}, {"domain": "第11版環境", "status": "検証済み", "checked_at": "2026-08-04", "basis": "Death Guard Faction Pack v1.0、公式記事、MFM更新日", "next_action": "公式アプリまたはCodexのデータシート値を登録"}, {"domain": "組立データ", "status": "検証済み", "checked_at": "2026-08-04", "basis": "アップロードされた公式組立説明書の手順1～21", "next_action": "なし"}], "documents": [{"id": "RULE-DG-FOCUS-2026", "title_official": "Warhammer 40,000 Faction Focus: Death Guard", "document_type": "Official rules preview", "version": null, "published_date": "2026-06-05", "effective_from": null, "last_checked": "2026-08-04", "official_url": "https://www.warhammer-community.com/en-gb/articles/9em1bqf9/warhammer-40000-faction-focus-death-guard/", "local_file": null, "language": "English", "status": "公式", "notes": "プレーグマリーンに直接関係するFlyblown Hostのルール例を確認。"}, {"id": "RULE-DG-FP-2026-01", "title_official": "Death Guard – Faction Pack", "document_type": "Faction Pack", "version": "1.0", "published_date": "2026-06-10", "effective_from": "2026-06-20", "last_checked": "2026-08-04", "official_url": "https://assets.warhammer-community.com/eng_10-06_warhammer40000_faction_pack_death_guard-dgm6djcpoa-iiqvmsh0op.pdf", "local_file": "Death_Guard_Faction_Pack_v1.0_2026-06-20.pdf", "language": "English", "status": "現行", "notes": "第11版移行用の公式補足資料。Codex: Death Guardを補完する。"}, {"id": "RULE-MFM-2026-07-22", "title_official": "Munitorum Field Manual", "document_type": "Points and army construction", "version": "Online", "published_date": "2026-07-22", "effective_from": "2026-07-22", "last_checked": "2026-08-04", "official_url": "https://www.warhammer-community.com/en-gb/downloads/warhammer-40000/", "local_file": null, "language": "English", "status": "現行", "notes": "公式ダウンロードページ上で2026-07-22更新と確認。"}]}};
 const STORAGE_KEY = 'dgcms_collection_v1';
-const UI_VERSION = '2.7.0-rc.1';
+const UI_VERSION = '2.9.0-rc.1';
 const COLLECTION_MASTER = [{"id":"DG-COL-001","jp":"モータリオン","en":"Mortarion","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-002","jp":"ティファウス","en":"Typhus","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":"2020年造形"},{"id":"DG-COL-003","jp":"ロード・オヴ・コンタギオン","en":"Lord of Contagion","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-004","jp":"ロード・オヴ・ポクス","en":"Lord of Poxes","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-005","jp":"ロード・オヴ・ヴィルレンス","en":"Lord of Virulence","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-006","jp":"マリグナント・プレーグキャスター","en":"Malignant Plaguecaster","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":"複数製品由来の重複造形は別途整理予定"},{"id":"DG-COL-007","jp":"ノクシャス・ブライトブリンガー","en":"Noxious Blightbringer","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-008","jp":"タリーマン","en":"Tallyman","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-009","jp":"バイオロガス・ピュートリファイヤ","en":"Biologus Putrifier","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-010","jp":"ファウル・ブライトスポーン","en":"Foul Blightspawn","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-011","jp":"プレーグサージョン","en":"Plague Surgeon","category":"キャラクター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-012","jp":"ロード・フェルシウスたるロード・オヴ・コンタギオン／テインテッド・コホート","en":"Lord Felthius and the Tainted Cohort","category":"キャラクター／セット","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-013","jp":"プレーグマリーン","en":"Plague Marines","category":"バトルライン","status":"所持","qty":1,"source":"ユーザー申告","note":"通常キットほか複数造形を所持"},{"id":"DG-COL-014","jp":"ポックスウォーカー","en":"Poxwalkers","category":"バトルライン","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-015","jp":"ブライトロード・ターミネイター","en":"Blightlord Terminators","category":"ターミネイター","status":"所持","qty":1,"source":"ユーザー申告","note":"5体キット"},{"id":"DG-COL-016","jp":"デスシュラウド・ターミネイター","en":"Deathshroud Terminators","category":"ターミネイター","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-017","jp":"フォーティッド・ブロートドローン","en":"Foetid Bloat-drone","category":"デーモンエンジン","status":"所持","qty":1,"source":"ユーザー申告","note":"武装はマグネット化方針"},{"id":"DG-COL-018","jp":"メフィティック・ブライトハウラー","en":"Myphitic Blight-hauler","category":"デーモンエンジン","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-019","jp":"プレーグバースト・クロウラー","en":"Plagueburst Crawler","category":"ビークル","status":"所持","qty":1,"source":"ユーザー申告","note":"破損品を練習用として所持"},{"id":"DG-COL-020","jp":"ケイオス・ライノ","en":"Chaos Rhino","category":"ビークル","status":"所持","qty":1,"source":"ユーザー申告","note":"複数所持"},{"id":"DG-COL-021","jp":"瘴気増幅炉","en":"Miasmic Malignifier","category":"情景モデル","status":"所持","qty":1,"source":"ユーザー申告","note":""},{"id":"DG-COL-022","jp":"ディファイラー（旧キット）","en":"Defiler (older kit)","category":"ビークル","status":"所持","qty":1,"source":"ユーザー申告","note":"旧キット購入済み"},{"id":"DG-COL-023","jp":"ディファイラー（新造形）","en":"Defiler (new sculpt)","category":"ビークル","status":"未所持","qty":0,"source":"ユーザー申告","note":"新キット／新造形"},{"id":"DG-COL-024","jp":"ヘルブルート","en":"Helbrute","category":"ビークル","status":"未所持","qty":0,"source":"ユーザー申告","note":""},{"id":"DG-COL-025","jp":"プレーグマリーン・チャンピオン","en":"Plague Marine Champion","category":"単品造形","status":"所持","qty":1,"source":"ユーザー申告","note":"単品発売造形"},{"id":"DG-COL-026","jp":"アイコンベアラー","en":"Plague Marine Icon Bearer","category":"単品造形","status":"所持","qty":1,"source":"ユーザー申告","note":"単品発売造形"},{"id":"DG-COL-027","jp":"イージー・トゥ・ビルド：プレーグマリーン","en":"Easy to Build Plague Marines","category":"限定／旧製品","status":"所持","qty":1,"source":"ユーザー申告","note":"First Strike経由"},{"id":"DG-COL-028","jp":"イージー・トゥ・ビルド：ポックスウォーカー","en":"Easy to Build Poxwalkers","category":"限定／旧製品","status":"所持","qty":1,"source":"ユーザー申告","note":"First Strike経由"},{"id":"DG-COL-029","jp":"ザ・プレーグ・ブレスレン","en":"The Plague Brethren","category":"限定造形","status":"未所持","qty":0,"source":"ユーザー申告","note":"3体未組立・欠品なしを目標。公式日本語名確認済み"},{"id":"DG-COL-030","jp":"スペースマリーン・ヒーローズ シリーズ3 シークレットモデル","en":"Space Marine Heroes Series 3 Secret Model","category":"限定造形","status":"所持","qty":1,"source":"ユーザー申告","note":"キルチーム・スターター版と同造形"}];
 
 const GOLD_STANDARD_RECORDS = [{"entity_id":"DG-PM-001","official_jp":"プレーグマリーン","official_en":"Plague Marine","kit_jp":"プレーグマリーン","kit_en":"Plague Marines","body_id":"PM-01","variant":"A","configuration_jp":"片手火器＋鎖付き装具","configuration_en":"One-handed firearm + chained implement","configuration_name_status":"説明用名称（公式武器名ではない）","instruction_pages":"4–5","instruction_steps":"1a–1c, 2a–2c","parts":{"torso_legs":["24","22"],"torso_front_or_chest":["07"],"backpack":["10"],"chained_implement":["01","20"],"firearm_arm":["03"],"head_choice":["16","17"],"right_shoulder":["28"],"left_shoulder_assembly":["26","27"],"base":["32mm round base (instruction image; part number not shown)"]},"compatibility":[{"rule":"PM-01 Variant A","required":["01+20","03"],"choices":["head 16 or 17"],"accessories":["28","26+27"],"status":"Verified"}],"evidence":[{"evidence_id":"EV-PM-001-A","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"4","step":"1a–1c","supports":"PM-01 fixed body: 24, 22, 07, backpack 10","status":"Verified","checked":"2026-08-04"},{"evidence_id":"EV-PM-001-B","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"5","step":"2a–2c","supports":"Variant A arm/weapon, head and shoulder choices","status":"Verified","checked":"2026-08-04"}],"review_status":"Verified","locked":false,"review_notes":["武器の正式名称は当該説明書ページに記載がないため未確定。","完成形とパーツ対応は説明書画像で確認済み。","Locked化には第二レビューが必要。"]},{"entity_id":"DG-PM-002","official_jp":"プレーグマリーン","official_en":"Plague Marine","kit_jp":"プレーグマリーン","kit_en":"Plague Marines","body_id":"PM-01","variant":"B","configuration_jp":"プレーグナイフ＋変異腕","configuration_en":"Plague knife + mutated arm","configuration_name_status":"Plague knifeは説明書表記。『変異腕』は識別用の説明名称","instruction_pages":"4–5","instruction_steps":"1a–1c, 3a–3c","parts":{"torso_legs":["24","22"],"torso_front_or_chest":["07"],"backpack":["10"],"plague_knife_assembly":["02","15"],"mutated_arm":["04"],"head_choice":["16","17"],"right_shoulder":["28"],"left_shoulder_assembly":["26","27"],"base":["32mm round base (instruction image; part number not shown)"]},"compatibility":[{"rule":"PM-01 Variant B","required":["02+15","04"],"choices":["head 16 or 17"],"accessories":["28","26+27"],"status":"Verified"}],"evidence":[{"evidence_id":"EV-PM-002-A","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"4","step":"1a–1c","supports":"PM-01 fixed body: 24, 22, 07, backpack 10","status":"Verified","checked":"2026-08-04"},{"evidence_id":"EV-PM-002-B","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"5","step":"3a–3c","supports":"Variant B: plague knife 02+15, mutated arm 04, head and shoulder choices","status":"Verified","checked":"2026-08-04"}],"review_status":"Verified","locked":false,"review_notes":["Plague knifeの英語名称は説明書に明記されている。","パーツ04の正式武器・部位名称は当該説明書に記載がないため『変異腕』を説明用名称として使用。","完成形とパーツ対応は説明書画像で確認済み。","Locked化には第二レビューが必要。"]},{"official_jp":"プレーグマリーン","official_en":"Plague Marine","kit_jp":"プレーグマリーン","kit_en":"Plague Marines","body_id":"PM-02","instruction_pages":"6–7","parts_fixed":{"body_halves":["78","79"],"torso_front":["80"],"backpack":["84","85"],"head_choice":["145","90","89"],"right_shoulder":["81"],"left_shoulder_assembly":["82","83"],"base":["32mm round base (instruction image; part number not shown)"]},"entity_id":"DG-PM-003","variant":"A","configuration_jp":"Mace of contagion＋両手近接武器","configuration_en":"Mace of contagion + two-handed melee weapon","configuration_name_status":"Mace of contagionは説明書上の英語公式名。日本語公式武器名は未確認","instruction_steps":"4a–4c, 5a–5b","parts":{"body_halves":["78","79"],"torso_front":["80"],"backpack":["84","85"],"left_melee_arm_assembly":["92","91"],"mace_of_contagion":["93","94"],"head_choice":["145","90","89"],"right_shoulder":["81"],"left_shoulder_assembly":["82","83"],"base":["32mm round base (instruction image; part number not shown)"]},"compatibility":[{"rule":"PM-02 Variant A","required":["92+91","93+94"],"choices":["head 145, 90 or 89"],"accessories":["81","82+83"],"status":"Verified"}],"evidence":[{"evidence_id":"EV-PM-003-A","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"6","step":"4a–4c","supports":"PM-02 fixed body: 78, 79, 80; backpack 84+85","status":"Verified","checked":"2026-08-04"},{"evidence_id":"EV-PM-003-B","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"7","step":"5a–5b","supports":"Variant A: 92+91 and Mace of contagion 93+94; head and shoulder choices","status":"Verified","checked":"2026-08-04"}],"review_status":"Verified","locked":false,"review_notes":["Mace of contagionの英語名称は説明書に明記されている。","パーツ92+91の武器名称は当該ページに明記されていないため、説明用に『両手近接武器』と記録。","日本語公式武器名の確定は別Evidenceが必要。","Locked化には第二レビューが必要。"]},{"official_jp":"プレーグマリーン","official_en":"Plague Marine","kit_jp":"プレーグマリーン","kit_en":"Plague Marines","body_id":"PM-02","instruction_pages":"6–7","parts_fixed":{"body_halves":["78","79"],"torso_front":["80"],"backpack":["84","85"],"head_choice":["145","90","89"],"right_shoulder":["81"],"left_shoulder_assembly":["82","83"],"base":["32mm round base (instruction image; part number not shown)"]},"entity_id":"DG-PM-004","variant":"B","configuration_jp":"ボルトガン","configuration_en":"Boltgun","configuration_name_status":"Boltgunは説明書上の英語公式名。日本語表記は一般的公式表記『ボルトガン』を使用","instruction_steps":"4a–4c, 6a–6b","parts":{"body_halves":["78","79"],"torso_front":["80"],"backpack":["84","85"],"boltgun_assembly":["87","88","95"],"supporting_arm":["86"],"head_choice":["145","90","89"],"right_shoulder":["81"],"left_shoulder_assembly":["82","83"],"base":["32mm round base (instruction image; part number not shown)"]},"compatibility":[{"rule":"PM-02 Variant B","required":["87+88+95","86"],"choices":["head 145, 90 or 89"],"accessories":["81","82+83"],"status":"Verified"}],"evidence":[{"evidence_id":"EV-PM-004-A","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"6","step":"4a–4c","supports":"PM-02 fixed body: 78, 79, 80; backpack 84+85","status":"Verified","checked":"2026-08-04"},{"evidence_id":"EV-PM-004-B","source_type":"Assembly instructions","source_name":"Death Guard Plague Marines assembly instructions","page":"7","step":"6a–6b","supports":"Variant B: boltgun 87+88+95, supporting arm 86; head and shoulder choices","status":"Verified","checked":"2026-08-04"}],"review_status":"Verified","locked":false,"review_notes":["Boltgunの英語名称は説明書に明記されている。","手順6aには仮組み記号があり、接着前の位置合わせが必要。","完成形とパーツ対応は説明書画像で確認済み。","Locked化には第二レビューが必要。"]}];
@@ -542,6 +787,7 @@ function renderAll(){
   renderGraph();
   renderRules();
   refineFooterIcons();
+  initializePartDetail();
   renderRubric();
   renderPurchase();
   renderData();
@@ -971,6 +1217,28 @@ const UI_ICONS = {
     <path d="M5 3.5h11l3 3V20H5z"/>
     <path d="M8 3.5v6h8v-6"/>
     <path d="M8 20v-6h8v6"/>
+  </svg>`,
+  close:`<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m6 6 12 12M18 6 6 18"/>
+  </svg>`,
+  evidence:`<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M6 3.5h9l3 3V20H6z"/>
+    <path d="M15 3.5V7h3"/>
+    <path d="M9 11h6M9 14.5h6M9 18h4"/>
+  </svg>`,
+  link:`<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M9.5 14.5 14.5 9.5"/>
+    <path d="M7.2 16.8 5.8 18.2a3.1 3.1 0 0 1-4.4-4.4l3.1-3.1a3.1 3.1 0 0 1 4.4 0"/>
+    <path d="m16.8 7.2 1.4-1.4a3.1 3.1 0 1 1 4.4 4.4l-3.1 3.1a3.1 3.1 0 0 1-4.4 0"/>
+  </svg>`,
+  check:`<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="m5 12.5 4.2 4.2L19 7"/>
+  </svg>`,
+  circle:`<svg viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="8.5"/>
+  </svg>`,
+  chart:`<svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M4 20V10h4v10M10 20V4h4v16M16 20v-7h4v7"/>
   </svg>`
 };
 function iconSvg(name, cls=''){
@@ -1023,8 +1291,339 @@ function renderChoiceGroups(groups){
 
 let currentUnitView = 'PM';
 
+
+function buildUnifiedPartIndex(){
+  const index = new Map();
+  const ensure = (unitKey, partNumber) => {
+    const key = `${unitKey}:${String(partNumber)}`;
+    if(!index.has(key)){
+      index.set(key,{
+        key,
+        unitKey,
+        partNumber:String(partNumber),
+        roles:new Set(),
+        builds:new Set(),
+        optionalBuilds:new Set(),
+        evidence:new Set(),
+        instruction:new Set(),
+        status:new Set()
+      });
+    }
+    return index.get(key);
+  };
+  const add = (unitKey, partNumber, data={}) => {
+    if(partNumber == null || partNumber === '') return;
+    const item = ensure(unitKey,String(partNumber).replace(/^0+(?=\d)/,''));
+    (data.roles || []).filter(Boolean).forEach(x=>item.roles.add(x));
+    (data.builds || []).filter(Boolean).forEach(x=>item.builds.add(x));
+    (data.optionalBuilds || []).filter(Boolean).forEach(x=>item.optionalBuilds.add(x));
+    (data.evidence || []).filter(Boolean).forEach(x=>item.evidence.add(x));
+    (data.instruction || []).filter(Boolean).forEach(x=>item.instruction.add(x));
+    (data.status || []).filter(Boolean).forEach(x=>item.status.add(x));
+  };
+
+  (PM22_DATA.records || []).forEach(r=>{
+    (r.required_parts || []).forEach(p=>add('PM',p,{
+      roles:['必須パーツ'],
+      builds:[r.build_id],
+      evidence:[r.evidence_status],
+      instruction:[`ページ ${r.pdf_page}・手順 ${r.instruction_step}`],
+      status:[r.evidence_status]
+    }));
+    (r.cosmetic_choices || []).forEach(g=>{
+      ['choose_one','required'].forEach(k=>(g[k] || []).forEach(v=>{
+        String(v).match(/\d+/g)?.forEach(p=>add('PM',p,{
+          roles:[g.type || '外観選択'],
+          optionalBuilds:[r.build_id],
+          evidence:[r.evidence_status],
+          instruction:[`ページ ${r.pdf_page}・手順 ${r.instruction_step}`],
+          status:[r.evidence_status]
+        }));
+      }));
+    });
+  });
+
+  (BLIGHTLORD_PACKAGE.build_master || []).forEach(r=>{
+    const groups = [
+      ['コンビウェポン基部',r.parts?.receiver],
+      ['射撃必須',r.parts?.ranged_required],
+      ['射撃選択',r.parts?.ranged_option_parts],
+      ['近接必須',r.parts?.melee_required]
+    ];
+    groups.forEach(([role,parts])=>(parts || []).forEach(p=>add('BLT',p,{
+      roles:[role],
+      builds:[r.build_id],
+      evidence:[r.verification_status],
+      instruction:[r.instruction_reference],
+      status:[r.verification_status]
+    })));
+  });
+
+  (DEATHSHROUD_PACKAGE.part_master || []).forEach(p=>add('DS',p.part_number,{
+    roles:p.roles || [],
+    builds:p.required_in || [],
+    optionalBuilds:p.optional_in || [],
+    evidence:p.evidence_status || [],
+    status:[p.status]
+  }));
+  (DEATHSHROUD_PACKAGE.build_master || []).forEach(r=>{
+    (r.fixed_parts || []).forEach(p=>add('DS',p,{
+      builds:[r.build_id],
+      instruction:[r.instruction_reference],
+      status:[r.verification_status]
+    }));
+  });
+
+  (FOETID_BLOAT_DRONE_PACKAGE.part_master || []).forEach(p=>add('FBD',p.part_number,{
+    roles:p.roles || [],
+    builds:p.required_in || [],
+    optionalBuilds:p.optional_in || [],
+    evidence:p.evidence_status || [],
+    status:[p.status]
+  }));
+  (FOETID_BLOAT_DRONE_PACKAGE.build_master || []).forEach(r=>{
+    [...(r.core_parts || []),...(r.weapon_parts || [])].forEach(p=>add('FBD',p,{
+      builds:[r.build_id],
+      instruction:[r.instruction_reference],
+      status:[r.verification_status]
+    }));
+  });
+
+  (MYPHITIC_BLIGHT_HAULER_PACKAGE.part_master || []).forEach(p=>add('MBH',p.part_number,{
+    roles:[p.role],
+    builds:p.required_in || [],
+    evidence:[p.evidence],
+    status:[p.status]
+  }));
+  (MYPHITIC_BLIGHT_HAULER_PACKAGE.build_master || []).forEach(r=>{
+    (r.required_parts || []).forEach(p=>add('MBH',p,{
+      builds:[r.build_id],
+      instruction:[r.instruction_reference],
+      status:[r.verification_status]
+    }));
+  });
+
+  return Object.fromEntries([...index.entries()].map(([key,v])=>[key,{
+    ...v,
+    roles:[...v.roles],
+    builds:[...v.builds],
+    optionalBuilds:[...v.optionalBuilds],
+    evidence:[...v.evidence],
+    instruction:[...v.instruction],
+    status:[...v.status]
+  }]));
+}
+let UNIFIED_PART_INDEX = null;
+
+function unitMeta(unitKey){
+  const map = {
+    PM:{jp:'プレーグマリーン',en:'Plague Marines'},
+    BLT:{jp:'ブライトロード・ターミネイター',en:'Blightlord Terminators'},
+    DS:{jp:'デスシュラウド・ターミネイター',en:'Deathshroud Terminators'},
+    FBD:{jp:'フォーティッド・ブロートドローン',en:'Foetid Bloat-drone'},
+    MBH:{jp:'メフィティック・ブライトハウラー',en:'Myphitic Blight-Hauler'}
+  };
+  return map[unitKey] || {jp:unitKey,en:''};
+}
+
+function renderPartChips(parts,unitKey){
+  const values = (Array.isArray(parts)?parts:[parts])
+    .filter(v=>v !== null && v !== undefined && String(v).trim() !== '');
+  if(!values.length) return '<span class="graph-meta">—</span>';
+  return `<div class="part-list">${values.map(p=>{
+    const clean = String(p).replace(/^0+(?=\d)/,'');
+    return `<button type="button" class="part-chip" data-part-key="${esc(`${unitKey}:${clean}`)}">${iconSvg('parts')}${esc(clean)}</button>`;
+  }).join('')}</div>`;
+}
+
+function bindPartChipEvents(root=document){
+  root.querySelectorAll('[data-part-key]').forEach(btn=>{
+    btn.onclick = ()=>openPartDetail(btn.dataset.partKey);
+  });
+}
+
+function openPartDetail(key){
+  if(!UNIFIED_PART_INDEX) UNIFIED_PART_INDEX = buildUnifiedPartIndex();
+  const item = UNIFIED_PART_INDEX[key];
+  const backdrop = $('partDetailBackdrop');
+  const content = $('partDetailContent');
+  if(!backdrop || !content) return;
+  const unit = unitMeta(item?.unitKey || key.split(':')[0]);
+  if(!item){
+    content.innerHTML = `
+      <div class="detail-head">
+        <div><div id="partDetailTitle" class="detail-title">パーツ ${esc(key.split(':')[1] || '')}</div>
+        <div class="en">${esc(unit.jp)} (${esc(unit.en)})</div></div>
+        <button class="detail-close" type="button" data-close-detail>${iconSvg('close')}</button>
+      </div>
+      <div class="detail-section"><div class="empty-detail">このパーツの詳細データはまだ登録されていません。</div></div>`;
+  }else{
+    const roles = item.roles.length ? item.roles.join(' / ') : '用途名確認待ち';
+    const allBuilds = [...new Set([...item.builds,...item.optionalBuilds])];
+    const evidence = item.evidence.length
+      ? item.evidence.map(e=>`<span class="evidence-pill">${iconSvg('evidence')}${esc(e)}</span>`).join('')
+      : '<span class="graph-meta">Evidence登録待ち</span>';
+    content.innerHTML = `
+      <div class="detail-head">
+        <div>
+          <div id="partDetailTitle" class="detail-title">パーツ ${esc(item.partNumber)}</div>
+          <div class="en">${esc(unit.jp)} (${esc(unit.en)})</div>
+        </div>
+        <button class="detail-close" type="button" data-close-detail>${iconSvg('close')}</button>
+      </div>
+      <div class="badges">
+        <span class="badge">${esc(item.unitKey)}</span>
+        ${item.status.map(s=>`<span class="badge ${String(s).toLowerCase().includes('verified')?'verified-badge':''}">${esc(s)}</span>`).join('')}
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">${iconSvg('parts')}パーツ情報</div>
+        <div class="detail-row"><div class="detail-key">用途</div><div class="detail-value">${esc(roles)}</div></div>
+        <div class="detail-row"><div class="detail-key">使用Build</div><div class="detail-value">${allBuilds.map(esc).join(' / ') || '—'}</div></div>
+        <div class="detail-row"><div class="detail-key">使用形態</div><div class="detail-value">${item.optionalBuilds.length?'外観・選択パーツを含む':'必須パーツ'}</div></div>
+      </div>
+      <div class="detail-section">
+        <div class="detail-section-title">${iconSvg('evidence')}Evidence</div>
+        <div>${evidence}</div>
+        <div class="detail-row"><div class="detail-key">説明書</div><div class="detail-value">${item.instruction.map(esc).join('<br>') || '参照位置登録待ち'}</div></div>
+      </div>
+`;
+  }
+  backdrop.classList.add('open');
+  backdrop.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+  content.querySelector('[data-close-detail]')?.addEventListener('click',closePartDetail);
+}
+
+function closePartDetail(){
+  const backdrop = $('partDetailBackdrop');
+  if(!backdrop) return;
+  backdrop.classList.remove('open');
+  backdrop.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+function initializePartDetail(){
+  UNIFIED_PART_INDEX = buildUnifiedPartIndex();
+  $('partDetailBackdrop')?.addEventListener('click',e=>{
+    if(e.target === $('partDetailBackdrop')) closePartDetail();
+  });
+  document.addEventListener('keydown',e=>{
+    if(e.key === 'Escape') closePartDetail();
+  });
+}
+
+
+let unitCollectionFilter = 'all';
+
+function allRegisteredBuilds(){
+  const pm = (PM22_DATA.records || []).map(r=>({
+    unit:'PM',build_id:r.build_id,label:r.configuration_jp,collection:r.collection || {}
+  }));
+  const blt = (BLIGHTLORD_PACKAGE.build_master || []).map(r=>({
+    unit:'BLT',build_id:r.build_id,label:r.configuration_jp,collection:r.collection || {}
+  }));
+  const ds = (DEATHSHROUD_PACKAGE.build_master || []).map(r=>({
+    unit:'DS',build_id:r.build_id,label:r.official_jp,collection:r.collection || {}
+  }));
+  const fbd = (FOETID_BLOAT_DRONE_PACKAGE.build_master || []).map(r=>({
+    unit:'FBD',build_id:r.build_id,label:r.configuration_jp,collection:r.collection || {}
+  }));
+  const mbh = (MYPHITIC_BLIGHT_HAULER_PACKAGE.build_master || []).map(r=>({
+    unit:'MBH',build_id:r.build_id,label:r.configuration_jp,collection:r.collection || {}
+  }));
+  return [...pm,...blt,...ds,...fbd,...mbh];
+}
+function collectionState(build){
+  const c = build.collection || {};
+  return {
+    owned:Boolean(c.owned),
+    assembled:Boolean(c.assembled),
+    painted:Boolean(c.painted),
+    finished:Boolean(c.finished),
+    magnets_installed:Boolean(c.magnets_installed)
+  };
+}
+function collectionMetrics(){
+  const builds = allRegisteredBuilds();
+  const total = builds.length || 1;
+  const count = key => builds.filter(b=>collectionState(b)[key]).length;
+  return {
+    total:builds.length,
+    owned:count('owned'),
+    assembled:count('assembled'),
+    painted:count('painted'),
+    finished:count('finished')
+  };
+}
+function metricCard(label,value,total){
+  const pct = total ? Math.round((value/total)*100) : 0;
+  return `<div class="dashboard-metric">
+    <div class="dashboard-label">${esc(label)}</div>
+    <div class="dashboard-value">${value}</div>
+    <div class="dashboard-sub">${pct}% / ${total}構成</div>
+    <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>
+  </div>`;
+}
+function renderCollectionDashboard(){
+  const m = collectionMetrics();
+  return `<article class="card">
+    <div class="section-title"><span class="icon">${iconSvg('chart')}</span>コレクション進捗</div>
+    <div class="dashboard-grid">
+      ${metricCard('所持',m.owned,m.total)}
+      ${metricCard('組立済み',m.assembled,m.total)}
+      ${metricCard('塗装済み',m.painted,m.total)}
+      ${metricCard('完成',m.finished,m.total)}
+    </div>
+  </article>`;
+}
+function renderStatusFilters(){
+  const filters = [
+    ['all','すべて'],
+    ['owned','所持'],
+    ['unowned','未所持'],
+    ['assembled','組立済み'],
+    ['unassembled','未組立'],
+    ['painted','塗装済み'],
+    ['unpainted','未塗装']
+  ];
+  return `<div class="status-filter-row">${filters.map(([id,label])=>
+    `<button type="button" class="status-filter ${unitCollectionFilter===id?'active':''}" data-unit-filter="${id}">${label}</button>`
+  ).join('')}</div>`;
+}
+function passesCollectionFilter(record){
+  const c = collectionState(record);
+  switch(unitCollectionFilter){
+    case 'owned': return c.owned;
+    case 'unowned': return !c.owned;
+    case 'assembled': return c.assembled;
+    case 'unassembled': return !c.assembled;
+    case 'painted': return c.painted;
+    case 'unpainted': return !c.painted;
+    default: return true;
+  }
+}
+function collectionPills(collection={}){
+  const states = [
+    ['owned','所持'],
+    ['assembled','組立'],
+    ['painted','塗装'],
+    ['finished','完成']
+  ];
+  return `<div class="collection-state">${states.map(([key,label])=>
+    `<span class="state-pill ${collection[key]?'done':''}">${iconSvg(collection[key]?'check':'circle')}${label}</span>`
+  ).join('')}</div>`;
+}
+function bindStatusFilters(){
+  document.querySelectorAll('[data-unit-filter]').forEach(btn=>{
+    btn.onclick=()=>{
+      unitCollectionFilter=btn.dataset.unitFilter;
+      renderUnits();
+    };
+  });
+}
+
 function renderUnits(){
   $('units').innerHTML = `
+    ${renderCollectionDashboard()}
     <article class="card">
       <div class="title">ユニット・データベース</div>
       <div class="grid" style="margin-top:10px">
@@ -1038,6 +1637,7 @@ function renderUnits(){
       </div>
     </article>
 
+    ${renderStatusFilters()}
     <div class="unit-switch">
       <button id="unitPM" class="${currentUnitView==='PM'?'active':''}">プレーグマリーン</button>
       <button id="unitBLT" class="${currentUnitView==='BLT'?'active':''}">ブライトロード</button>
@@ -1062,6 +1662,7 @@ function renderUnits(){
   $('unitDS').onclick = () => { currentUnitView='DS'; renderUnits(); };
   $('unitFBD').onclick = () => { currentUnitView='FBD'; renderUnits(); };
   $('unitMBH').onclick = () => { currentUnitView='MBH'; renderUnits(); };
+  bindStatusFilters();
   $('unitQ').addEventListener('input', renderUnitResults);
   $('unitStatus').addEventListener('change', renderUnitResults);
   renderUnitResults();
@@ -1076,6 +1677,7 @@ function renderUnitResults(){
       const hay = [r.build_id,r.body,r.configuration_jp,r.configuration_en,r.weapon_name_status].join(' ').toLowerCase();
       if(q && !hay.includes(q)) return false;
       if(status !== 'all' && r.evidence_status !== status) return false;
+      if(!passesCollectionFilter(r)) return false;
       return true;
     });
     $('unitResults').innerHTML = list.map(r => `
@@ -1092,7 +1694,8 @@ function renderUnitResults(){
           <span class="badge verified-badge">${esc(r.evidence_status)}</span>
           <span class="badge">Step ${esc(r.instruction_step)}</span>
         </div>
-        <div class="kv"><small>必須パーツ</small>${r.required_parts.map(esc).join(' / ')}</div>
+        ${collectionPills(r.collection || {})}
+        <div class="kv"><small>必須パーツ</small>${renderPartChips(r.required_parts,'PM')}</div>
         ${r.notes?.length ? `<div class="kv" style="margin-top:7px"><small>注記</small>${r.notes.map(esc).join('<br>')}</div>` : ''}
       </article>`).join('');
   }else if(currentUnitView === 'BLT'){
@@ -1103,6 +1706,7 @@ function renderUnitResults(){
       ].join(' ').toLowerCase();
       if(q && !hay.includes(q)) return false;
       if(status !== 'all' && r.verification_status !== status) return false;
+      if(!passesCollectionFilter(r)) return false;
       return true;
     });
     $('unitResults').innerHTML = list.map(r => `
@@ -1119,15 +1723,16 @@ function renderUnitResults(){
           <span class="badge verified-badge">${esc(r.verification_status)}</span>
           <span class="badge">${esc(r.instruction_reference)}</span>
         </div>
+        ${collectionPills(r.collection || {})}
         <div class="grid">
           <div class="kv"><small>射撃武器ID</small>${esc(r.ranged_weapon_id)}</div>
           <div class="kv"><small>近接武器ID</small>${esc(r.melee_weapon_id)}</div>
         </div>
         <div class="kv" style="margin-top:7px"><small>パーツ</small>
-          受け基部：${r.parts.receiver.join(' / ') || '—'}<br>
-          射撃必須：${r.parts.ranged_required.join(' / ') || '—'}<br>
-          射撃選択：${r.parts.ranged_option_parts.join(' / ') || '—'}<br>
-          近接必須：${r.parts.melee_required.join(' / ') || '—'}
+          受け基部：${renderPartChips(r.parts.receiver,'BLT')}<br>
+          射撃必須：${renderPartChips(r.parts.ranged_required,'BLT')}<br>
+          射撃選択：${renderPartChips(r.parts.ranged_option_parts,'BLT')}<br>
+          近接必須：${renderPartChips(r.parts.melee_required,'BLT')}
         </div>
         ${r.pending_items?.length ? `<div class="pending-box">未解決：${r.pending_items.map(esc).join(' / ')}</div>` : ''}
       </article>`).join('');
@@ -1139,6 +1744,7 @@ function renderUnitResults(){
       ].join(' ').toLowerCase();
       if(q && !hay.includes(q)) return false;
       if(status !== 'all' && r.verification_status !== status) return false;
+      if(!passesCollectionFilter(r)) return false;
       return true;
     });
     $('unitResults').innerHTML = list.map(r => `
@@ -1155,8 +1761,9 @@ function renderUnitResults(){
           <span class="badge verified-badge">${esc(r.verification_status)}</span>
           <span class="badge">${esc(r.instruction_reference)}</span>
         </div>
+        ${collectionPills(r.collection || {})}
         <div class="section-box"><div class="section-title"><span class="icon">${iconSvg('weapon')}</span>武器</div><div class="kv"><small>武器ID</small>${(r.weapon_ids || []).map(esc).join(' / ')}</div></div>
-        <div class="section-box"><div class="section-title"><span class="icon">${iconSvg('parts')}</span>固定パーツ</div><div class="kv">${(r.fixed_parts || []).map(esc).join(' / ') || '—'}</div></div>
+        <div class="section-box"><div class="section-title"><span class="icon">${iconSvg('parts')}</span>固定パーツ</div><div class="kv">${renderPartChips(r.fixed_parts || [],'DS')}</div></div>
         <div class="section-box">
           <div class="section-title"><span class="icon">${iconSvg('appearance')}</span>外観・装備選択</div>
           <div class="graph-meta">選択可能な外観パーツ</div>
@@ -1171,6 +1778,7 @@ function renderUnitResults(){
       ].join(' ').toLowerCase();
       if(q && !hay.includes(q)) return false;
       if(status !== 'all' && r.verification_status !== status) return false;
+      if(!passesCollectionFilter(r)) return false;
       return true;
     });
     $('unitResults').innerHTML = list.map(r => `
@@ -1187,9 +1795,10 @@ function renderUnitResults(){
           <span class="badge verified-badge">${esc(r.verification_status)}</span>
           <span class="badge">${esc(r.instruction_reference)}</span>
         </div>
+        ${collectionPills(r.collection || {})}
         <div class="kv"><small>武器ID</small>${esc(r.weapon_id)}</div>
-        <div class="kv" style="margin-top:7px"><small>共通胴体</small>${(r.core_parts || []).map(esc).join(' / ')}</div>
-        <div class="kv" style="margin-top:7px"><small>武器パーツ</small>${(r.weapon_parts || []).map(esc).join(' / ')}</div>
+        <div class="kv" style="margin-top:7px"><small>共通胴体</small>${renderPartChips(r.core_parts || [],'FBD')}</div>
+        <div class="kv" style="margin-top:7px"><small>武器パーツ</small>${renderPartChips(r.weapon_parts || [],'FBD')}</div>
         <div class="kv" style="margin-top:7px"><small>外観選択</small>
           下部触手 ${r.lower_variants.length}種／装甲外装 ${r.armour_variants.length}種
         </div>
@@ -1207,6 +1816,7 @@ function renderUnitResults(){
       ].join(' ').toLowerCase();
       if(q && !hay.includes(q)) return false;
       if(status !== 'all' && r.verification_status !== status) return false;
+      if(!passesCollectionFilter(r)) return false;
       return true;
     });
     $('unitResults').innerHTML = list.map(r => `
@@ -1223,8 +1833,9 @@ function renderUnitResults(){
           <span class="badge verified-badge">${esc(r.verification_status)}</span>
           <span class="badge">プッシュフィット</span>
         </div>
+        ${collectionPills(r.collection || {})}
         <div class="kv"><small>固定武装</small>${(r.weapon_ids || []).map(esc).join(' / ')}</div>
-        <div class="kv" style="margin-top:7px"><small>必須パーツ</small>${(r.required_parts || []).map(esc).join(' / ')}</div>
+        <div class="kv" style="margin-top:7px"><small>必須パーツ</small>${renderPartChips(r.required_parts || [],'MBH')}</div>
         <div class="grid" style="margin-top:7px">
           <div class="kv"><small>構成分岐</small>なし</div>
           <div class="kv"><small>マグネット</small>不要</div>
@@ -1233,6 +1844,7 @@ function renderUnitResults(){
         ${r.notes?.length ? `<div class="kv" style="margin-top:7px"><small>注記</small>${r.notes.map(esc).join('<br>')}</div>` : ''}
       </article>`).join('');
   }
+  bindPartChipEvents($('unitResults'));
 }
 
 
